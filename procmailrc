@@ -1,0 +1,19 @@
+# This one is tested
+# To use on freefall, set your /var/forward/user to:
+# "|IFS=' ' && p=/usr/local/bin/procmail && test -f $p && exec $p -Yf- || exit 75
+# and set your email address below and make sure the Python script
+# is in your path
+#
+# All other mail should pass through untouched.
+#
+# It is *imperative* that the python script exists, or you may lose mail.
+
+:0
+* ^List-Id: [^<]*<doc-committers.freebsd.org>
+{
+	:0 bf
+	| python %%YOUR_HOME_DIRECTORY%%/bin/difffold.py
+}
+
+:0
+! %%YOUR_FORWARDING_EMAIL_ADDRESS_HERE%%
