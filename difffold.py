@@ -37,11 +37,11 @@ def wrap(text, output = True):
 
 def warn(text):
     global lineNumber
-    sys.stderr.write('line %d: %s' % (lineNumber, text))
+    sys.stdout.write('line %d: %s' % (lineNumber, text))
 
 def err(text):
     warn(text)
-    exit(1)
+    exit(0)
 
 def getLine():
     global lineNumber
@@ -51,19 +51,19 @@ def getLine():
 def skipToPatch():
     '''Output lines that are not patches, and consume the first two lines'''
     line = getLine()
-    while line != '' and line[:3] != '---':
-        # Hmm...
-        print(line, end='')
-        line = getLine()
+    print(line, end='')
     if line == '':
         exit(0)
+    if line[:3] != '---':
+        # Hmm...
+        return skipToPatch()
     line = getLine()
+    print(line, end='')
     if line[:3] != '+++':
         # not actually a patch...
-        skipToPatch()
+        return skipToPatch()
 
 def foldHunks():
-    # Expects stdin to have passed --- and +++ lines
     added = []
     removed = []
     while True:
