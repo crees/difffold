@@ -1,0 +1,24 @@
+Difffold wraps wide diffs
+
+When the FreeBSD docs repository switched to ASCIIDoc, we ended up with
+long lines in the files.  This made it easier to track changes in
+some ways, because we didn't have to wrap lines... but it made it harder
+to read diffs, because we didn't wrap lines!
+
+This utility wraps any diff to 80 characters wide, but zips the lines
+together, for example:
+
+@@ -241,7 +241,7 @@ The {{< manpage "ping" "8" >}} and {{< manpage "ping6" "8" >}} utilities both su
+
+ [[hardware]]
+ == Hardware Support
+-This section covers general hardware support for physical machines,
++This section covers general hardware support for physical machines,
+>-hypervisors, and virtualizatio n environments, as well as hardware
+>+hypervisors, and virtualization environments, as well as hardware
+>-changes and updates that do not otherwise fit in other sections of
+>+changes and updates that do not otherwise fit in other sections of
+>-this document.
+>+this document.
+ [[hardware-virtualization]]
+ === Virtualization Support
