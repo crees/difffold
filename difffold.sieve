@@ -1,3 +1,5 @@
+# This is not tested-- please ensure it works with test emails
+# to avoid email loss
 require ["vnd.dovecot.pipe", "copy", "imapsieve", "environment", "variables"];
 
 if exists "list-id" {
