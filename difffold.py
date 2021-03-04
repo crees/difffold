@@ -95,20 +95,15 @@ def foldHunks():
                         firstLine = False
                     else:
                         print(">-%s" % r.pop(0))
-                        print(">+%s" % a.pop(0))
+                        if len(a) > 0:
+                            print(">+%s" % a.pop(0))
                 while len(a) > 0:
                     # Run out of the removed, so just chuck out the added
                     print(a.pop(0))
-            if len(added) > 0:
-                # Just a few lines of +
-                for l in added:
-                    wrap(l)
-                added = []
-            elif len(removed) > 0:
-                # Just a few lines of -
-                for l in removed:
-                    wrap(r)
-                removed = []
+            while len(removed) > 0:
+                wrap(removed.pop(0))
+            while len(added) > 0:
+                wrap(added.pop(0))
             oldlength -= 1
             newlength -= 1
             wrap(line)
