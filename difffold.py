@@ -68,7 +68,8 @@ def foldHunks():
     removed = []
     while True:
         (oldlength, newlength) = hunkLength()
-        while (oldlength > 0 or newlength > 0):
+        while (oldlength > 0 or newlength > 0 or
+                len(removed) > 0 or len(added) > 0):
             line = getLine()
             if line[0] == '+':
                 added.append(line)
